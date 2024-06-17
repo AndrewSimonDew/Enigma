@@ -14,7 +14,7 @@ os.system("title ENIGMA")
 
 def main_screen():
     os.system("cls" if os.name == "nt" else "clear")
-    print(f"""{red}
+    opt = input(f"""{red}
 
     .----------------.  .-----------------. .----------------.  .----------------.  .----------------.  .----------------. 
     | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
@@ -32,8 +32,7 @@ def main_screen():
 
         {white}1: {red}ENCODE
         {white}2: {green}DECODE                                                                                                                                  
-    """)
-    opt = input(f"{red}: ")
+    {red}:""")
     os.system("cls" if os.name == "nt" else "clear")
     if opt == "1":
         encode()
