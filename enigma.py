@@ -32,14 +32,14 @@ def main_screen():
 
         {white}1: {red}ENCODE
         {white}2: {green}DECODE                                                                                                                                  
-    {red}:""")
+{red}:""")
     os.system("cls" if os.name == "nt" else "clear")
     if opt == "1":
         encode()
     elif opt == "2":
         decode()
     else:
-        main_screen()
+        return
 
 def encode():
     key = Fernet.generate_key()
@@ -62,10 +62,11 @@ def encode():
     
 
 {red}:""").strip()
+    os.system("cls")
     if text_to != "":
         f = Fernet(key)
         encoded = f.encrypt(text_to.encode('utf-8')).decode('utf-8')
-        input(f"""{red}
+        print(f"""{red}
 
     .----------------.  .-----------------. .----------------.  .----------------.  .----------------.  .----------------. 
     | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
@@ -85,7 +86,6 @@ def encode():
         {white}ENCRYPTED: {green}{encoded}                                                                                                      
     """)
         input(f"{white}Press Enter to return to the main screen...")
-        main_screen()
 
 def decode():
     passkey = input(f"""
@@ -134,7 +134,11 @@ def decode():
     except Exception as e:
         print(f"\n{red}An error occurred: {e}\n")
     input(f"{white}Press Enter to return to the main screen...")
-    main_screen()
 
 if __name__ == "__main__":
-    main_screen()
+    try:
+        while True:
+            main_screen()
+    except KeyboardInterrupt:
+        os.system("cls")
+        print(f"{nocolor}Program Terminated by user.")
